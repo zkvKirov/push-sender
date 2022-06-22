@@ -23,7 +23,12 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3      
+      
+      - name: Decode fcm.json
+        env:
+          PUSH_SENDER_SECRET: ${{ secrets.PUSH_SENDER_SECRET }}
+        run: echo $PUSH_SENDER_SECRET > ./push-sender/fcm.json
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
