@@ -15,6 +15,23 @@ fun main() {
 
     FirebaseApp.initializeApp(options)
 
+    val newPost = Message.builder()
+        .putData("action", "NEW_POST")
+        .putData("content", """{
+          "id": 0,
+          "author": "Maxim",          
+          "content": "A basic notification usually includes a title, a line of text, and one or more actions the user can perform in response. To provide even more information, you can also create large, expandable notifications by applying one of several notification templates as described on this page",
+          "published": 22.06.2022,
+          "likes": 0,
+          "likedByMe": false,
+          "share": 0,
+          "video": null
+        }""".trimIndent())
+        .setToken("faYbegiQSvuCQsQRD6lk86:APA91bGZ24EGhuAQUNElNlKMSIFocDCL7MDsOMwsY-wfVyYYCU3l1CgxzYZiYppoKse3ZHeMtScxDOxKnuy5MEy5RZWCvjwThEpHPB5IfzSEkaMIq3SnX3UNlUOXjNGQLsjut6QwCnqO")
+        .build()
+
+    FirebaseMessaging.getInstance().send(newPost)
+
     val message = Message.builder()
         .putData("action", "LIKE")
         .putData("content", """{
